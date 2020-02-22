@@ -17,6 +17,7 @@ public class BowlingTest
     private Roll nextFrameFirstRoll;
     private Roll nextFrameSecondRoll;
     private Frame frame;
+    private Game game;
 
 
     @Before
@@ -26,7 +27,7 @@ public class BowlingTest
         nextFrameFirstRoll = new Roll();
         nextFrameSecondRoll = new Roll();
         frame = new Frame();
-
+        game = new Game();
     }
 
     @Test
@@ -72,17 +73,13 @@ public class BowlingTest
     public void shouldReturnGameScoreForFrameOneWhenZeroPinsKnockedDown() {
         firstRoll.setPinsKnockedDown(0);
         secondRoll.setPinsKnockedDown(0);
-
-        Game game = new Game();
         frame.setRolls(listOfRolls(firstRoll, secondRoll));
-
         List<Frame> frames = new ArrayList<>();
         frames.add(frame);
-
         game.setFrames(frames);
-
         assertEquals(game.calculateGameScore(), 0);
     }
+
     public List<Roll> listOfRolls(Roll firstRoll, Roll secondRoll) {
         List<Roll> rolls = new ArrayList<>();
         rolls.add(firstRoll);
