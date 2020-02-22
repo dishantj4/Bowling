@@ -11,6 +11,13 @@ More info on the rules at: [How to Score for Bowling](www.topendsports.com/sport
 This is an Practice program to showcase Test Driven Development
 
 
+# Functional Case:
+
+````
+-Calculate score of one frame, when both rolls miss to knock down any pin
+
+````
+
 # Prerequisite:
 
 ````
