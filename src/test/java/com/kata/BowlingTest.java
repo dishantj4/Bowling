@@ -91,11 +91,24 @@ public class BowlingTest
         assertEquals(game.calculateGameScore(2), 20);
     }
 
-    public List<Roll> listOfRolls(Roll firstRoll, Roll secondRoll) {
-        List<Roll> rolls = new ArrayList<>();
-        rolls.add(firstRoll);
-        rolls.add(secondRoll);
-        return rolls;
+    @Test
+    public void shouldReturnGameScoreForTwoFramesWithOneStrikeAndOtherFewPinsKnockedDown() {
+        firstRoll.setPinsKnockedDown(10);
+        frame.setRolls(listOfRolls(firstRoll));
+        Frame nextFrame = new Frame();
+        nextFrameFirstRoll.setPinsKnockedDown(3);
+        nextFrameSecondRoll.setPinsKnockedDown(4);
+        nextFrame.setRolls(listOfRolls(nextFrameFirstRoll, nextFrameSecondRoll));
+        game.setFrames(listOfFrames(frame, nextFrame));
+        assertEquals(game.calculateGameScore(2), 24);
+    }
+
+    public List<Roll> listOfRolls(Roll ... rolls) {
+        List<Roll> rollList = new ArrayList<>();
+        for (Roll roll : rolls) {
+            rollList.add(roll);
+        }
+        return rollList;
     }
 
     public List<Frame> listOfFrames(Frame ... frames) {

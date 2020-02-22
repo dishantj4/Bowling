@@ -20,6 +20,7 @@ This is an Practice program to showcase Test Driven Development
 -Calculate frame score when All pins are knocked down in First roll and some pins are knocked next Frame(Strike)
 -Calculate game score for one frame when zero pins are knocked down in both rolls
 -Calculate game score having two frames where first frame is spare and in second frame few pins are knocked down
+-Calculate game score having two frames where first frame is strike and in second frame few pins are knocked down
 
 ````
 

@@ -18,14 +18,20 @@ public class Game {
 
         int gameScore = 0;
         int frameScore = 0;
+        int firstRoll = 0;
         for (int frameCount = 0; frameCount < maxNumberOfFrame; frameCount++) {
-            frameScore = frames.get(frameCount).getRolls().get(0).getPinsKnockedDown() + frames.get(frameCount).getRolls().get(1).getPinsKnockedDown();
-            if (frameScore == 10) {
-                frameScore = frames.get(frameCount).calculateFrameScoreForSpare(frames.get(frameCount+1).getRolls().get(0));
-            } else {
-                frameScore = frames.get(frameCount).calculateFrameScore();
+            firstRoll = frames.get(frameCount).getRolls().get(0).getPinsKnockedDown();
+            if (firstRoll == 10) {
+                frameScore = frames.get(frameCount+1).calculateFrameScoreForStrike();
             }
-
+            else {
+                frameScore = firstRoll + frames.get(frameCount).getRolls().get(1).getPinsKnockedDown();
+                if (frameScore == 10) {
+                    frameScore = frames.get(frameCount).calculateFrameScoreForSpare(frames.get(frameCount + 1).getRolls().get(0));
+                } else {
+                    frameScore = frames.get(frameCount).calculateFrameScore();
+                }
+            }
             gameScore = gameScore + frameScore;
         }
         return gameScore;
