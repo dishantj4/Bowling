@@ -7,11 +7,11 @@ public class Frame {
 
     public int calculateFrameScore(List<Roll> rolls) {
 
-        int score = 0;
+        int frameScore = 0;
         for(Roll roll : rolls)
         {
-           score = score +roll.getPinsKnockedDown();
+            frameScore = frameScore +roll.getPinsKnockedDown();
         }
-        return score;
+        return frameScore;
     }
 }
