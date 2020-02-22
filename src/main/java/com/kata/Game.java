@@ -19,15 +19,19 @@ public class Game {
         int gameScore = 0;
         int frameScore = 0;
         int firstRoll = 0;
+        int secondRoll = 0;
+        int nextFrame = 0;
         for (int frameCount = 0; frameCount < maxNumberOfFrame; frameCount++) {
+            nextFrame = frameCount+1;
             firstRoll = frames.get(frameCount).getRolls().get(0).getPinsKnockedDown();
-            if (firstRoll == 10) {
-                frameScore = frames.get(frameCount+1).calculateFrameScoreForStrike();
+            if (isStrike(firstRoll)) {
+                frameScore = frames.get(nextFrame).calculateFrameScoreForStrike();
             }
             else {
-                frameScore = firstRoll + frames.get(frameCount).getRolls().get(1).getPinsKnockedDown();
-                if (frameScore == 10) {
-                    frameScore = frames.get(frameCount).calculateFrameScoreForSpare(frames.get(frameCount + 1).getRolls().get(0));
+                secondRoll= frames.get(frameCount).getRolls().get(1).getPinsKnockedDown();
+                frameScore = firstRoll + secondRoll;
+                if (isSpare(frameScore)) {
+                    frameScore = frames.get(frameCount).calculateFrameScoreForSpare(frames.get(nextFrame).getRolls().get(0));
                 } else {
                     frameScore = frames.get(frameCount).calculateFrameScore();
                 }
@@ -35,5 +39,20 @@ public class Game {
             gameScore = gameScore + frameScore;
         }
         return gameScore;
+    }
+
+    public boolean isStrike(int firstRoll){
+
+        if(firstRoll == 10)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isSpare(int frameScore){
+        if(frameScore == 10)
+            return true;
+        else
+            return false;
     }
 }
