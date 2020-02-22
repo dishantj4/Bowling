@@ -1,0 +1,33 @@
+# Bowling
+Project to calculate score for Bowling game which consist of 10 turns of bowling where each turn is known as frame which itselfs consist of 2 rolls.
+for each roll, bowl would be rolled to knock down 10 pins and score would be calculated based on the outcome of number of pins kocked down.
+
+
+More info on the rules at: [How to Score for Bowling](www.topendsports.com/sport/tenpin/scoring.htm)
+
+
+
+# Purpose
+This is an Practice program to showcase Test Driven Development
+
+
+# Prerequisite:
+
+````
+Jdk 1.7 or above
+IDE (Eclipse or Intellij)
+Maven 3.0
+````
+
+# How to run this App
+
+Follow below instructions to run this app
+````
+-git clone https://github.com/dishantj4/Bowling.git
+
+````
+
+
+
+
+
