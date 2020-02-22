@@ -4,8 +4,17 @@ import java.util.List;
 
 public class Frame {
 
+    private List<Roll> rolls;
 
-    public int calculateFrameScore(List<Roll> rolls) {
+    public List<Roll> getRolls() {
+        return rolls;
+    }
+
+    public void setRolls(List<Roll> rolls) {
+        this.rolls = rolls;
+    }
+
+    public int calculateFrameScore() {
 
         int frameScore = rolls.get(0).getPinsKnockedDown() + rolls.get(1).getPinsKnockedDown();
         return frameScore;
@@ -15,7 +24,7 @@ public class Frame {
         return pinsKnockedInNextRoll.getPinsKnockedDown()+10;
     }
 
-    public int calculateFrameScoreForStrike(List<Roll> nextRolls) {
-        return calculateFrameScore(nextRolls)+10;
+    public int calculateFrameScoreForStrike() {
+        return calculateFrameScore()+10;
     }
 }

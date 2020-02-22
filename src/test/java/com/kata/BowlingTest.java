@@ -33,21 +33,24 @@ public class BowlingTest
     public void shouldReturnFrameScoreZeroWhenZeroPinsAreKnockedDown() {
         firstRoll.setPinsKnockedDown(0);
         secondRoll.setPinsKnockedDown(0);
-        assertEquals(frame.calculateFrameScore(listOfRolls(firstRoll,secondRoll)), 0);
+        frame.setRolls(listOfRolls(firstRoll,secondRoll));
+        assertEquals(frame.calculateFrameScore(), 0);
     }
 
     @Test
     public void shouldReturnFrameScoreValueWhenFewPinsAreKnockedDown() {
         firstRoll.setPinsKnockedDown(3);
         secondRoll.setPinsKnockedDown(4);
-        assertEquals(frame.calculateFrameScore(listOfRolls(firstRoll,secondRoll)), 7);
+        frame.setRolls(listOfRolls(firstRoll,secondRoll));
+        assertEquals(frame.calculateFrameScore(), 7);
     }
 
     @Test
     public void shouldReturnFrameScoreValueWhenAllPinsAreKnockedDownInTwoRolls() {
         firstRoll.setPinsKnockedDown(3);
         secondRoll.setPinsKnockedDown(7);
-        if(frame.calculateFrameScore(listOfRolls(firstRoll,secondRoll)) ==10){
+        frame.setRolls(listOfRolls(firstRoll,secondRoll));
+        if(frame.calculateFrameScore() ==10){
             nextFrameFirstRoll.setPinsKnockedDown(4);
         }
         assertEquals(frame.calculateFrameScoreForSpare(nextFrameFirstRoll), 14);
@@ -60,9 +63,26 @@ public class BowlingTest
             nextFrameFirstRoll.setPinsKnockedDown(4);
             nextFrameSecondRoll.setPinsKnockedDown(4);
         }
-        assertEquals(frame.calculateFrameScoreForStrike(listOfRolls(nextFrameFirstRoll,nextFrameSecondRoll)), 18);
+        frame.setRolls(listOfRolls(nextFrameFirstRoll, nextFrameSecondRoll));
+        assertEquals(frame.calculateFrameScoreForStrike(), 18);
     }
 
+
+    @Test
+    public void shouldReturnGameScoreForFrameOneWhenZeroPinsKnockedDown() {
+        firstRoll.setPinsKnockedDown(0);
+        secondRoll.setPinsKnockedDown(0);
+
+        Game game = new Game();
+        frame.setRolls(listOfRolls(firstRoll, secondRoll));
+
+        List<Frame> frames = new ArrayList<>();
+        frames.add(frame);
+
+        game.setFrames(frames);
+
+        assertEquals(game.calculateGameScore(), 0);
+    }
     public List<Roll> listOfRolls(Roll firstRoll, Roll secondRoll) {
         List<Roll> rolls = new ArrayList<>();
         rolls.add(firstRoll);
