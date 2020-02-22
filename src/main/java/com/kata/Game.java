@@ -17,15 +17,16 @@ public class Game {
     public int calculateGameScore(int maxNumberOfFrame) {
 
         int gameScore = 0;
+        int frameScore = 0;
         for (int frameCount = 0; frameCount < maxNumberOfFrame; frameCount++) {
-            int frameScore = frames.get(frameCount).getRolls().get(0).getPinsKnockedDown() + frames.get(frameCount).getRolls().get(1).getPinsKnockedDown();
+            frameScore = frames.get(frameCount).getRolls().get(0).getPinsKnockedDown() + frames.get(frameCount).getRolls().get(1).getPinsKnockedDown();
             if (frameScore == 10) {
                 frameScore = frames.get(frameCount).calculateFrameScoreForSpare(frames.get(frameCount+1).getRolls().get(0));
             } else {
                 frameScore = frames.get(frameCount).calculateFrameScore();
             }
-            
-             gameScore = gameScore + frameScore;
+
+            gameScore = gameScore + frameScore;
         }
         return gameScore;
     }

@@ -74,9 +74,7 @@ public class BowlingTest
         firstRoll.setPinsKnockedDown(0);
         secondRoll.setPinsKnockedDown(0);
         frame.setRolls(listOfRolls(firstRoll, secondRoll));
-        List<Frame> frames = new ArrayList<>();
-        frames.add(frame);
-        game.setFrames(frames);
+        game.setFrames(listOfFrames(frame));
         assertEquals(game.calculateGameScore(1), 0);
     }
 
@@ -89,10 +87,7 @@ public class BowlingTest
         nextFrameFirstRoll.setPinsKnockedDown(3);
         nextFrameSecondRoll.setPinsKnockedDown(4);
         nextFrame.setRolls(listOfRolls(nextFrameFirstRoll, nextFrameSecondRoll));
-        List<Frame> frames = new ArrayList<>();
-        frames.add(frame);
-        frames.add(nextFrame);
-        game.setFrames(frames);
+        game.setFrames(listOfFrames(frame, nextFrame));
         assertEquals(game.calculateGameScore(2), 20);
     }
 
@@ -101,6 +96,14 @@ public class BowlingTest
         rolls.add(firstRoll);
         rolls.add(secondRoll);
         return rolls;
+    }
+
+    public List<Frame> listOfFrames(Frame ... frames) {
+        List<Frame> frameList = new ArrayList<>();
+        for (Frame frame : frames) {
+            frameList.add(frame);
+        }
+        return frameList;
     }
 
 }
