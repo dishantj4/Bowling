@@ -14,4 +14,8 @@ public class Frame {
     public int calculateFrameScoreForSpare(Roll pinsKnockedInNextRoll) {
         return pinsKnockedInNextRoll.getPinsKnockedDown()+10;
     }
+
+    public int calculateFrameScoreForStrike(List<Roll> nextRolls) {
+        return calculateFrameScore(nextRolls)+10;
+    }
 }

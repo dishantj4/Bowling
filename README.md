@@ -17,6 +17,7 @@ This is an Practice program to showcase Test Driven Development
 -Calculate score of one frame, when both rolls miss to knock down any pin
 -Calculate score of one frame, when few pins are knocked down in both rolls
 -Calculate frame score when All pins are knocked down in one frame and some pins are knocked next roll(Spare)
+-Calculate frame score when All pins are knocked down in First roll and some pins are knocked next Frame(Strike)
 
 ````
 
