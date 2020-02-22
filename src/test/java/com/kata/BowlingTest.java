@@ -15,7 +15,7 @@ public class BowlingTest
     private Roll firstRoll;
     private Roll secondRoll;
     private Roll nextFrameFirstRoll;
-    private Roll nextFrameSecondtRoll;
+    private Roll nextFrameSecondRoll;
     private Frame frame;
 
 
@@ -24,7 +24,7 @@ public class BowlingTest
         firstRoll = new Roll();
         secondRoll = new Roll();
         nextFrameFirstRoll = new Roll();
-        nextFrameSecondtRoll = new Roll();
+        nextFrameSecondRoll = new Roll();
         frame = new Frame();
 
     }
@@ -58,9 +58,9 @@ public class BowlingTest
         firstRoll.setPinsKnockedDown(10);
         if(firstRoll.getPinsKnockedDown() ==10){
             nextFrameFirstRoll.setPinsKnockedDown(4);
-            nextFrameSecondtRoll.setPinsKnockedDown(4);
+            nextFrameSecondRoll.setPinsKnockedDown(4);
         }
-        assertEquals(frame.calculateFrameScoreForStrike(listOfRolls(nextFrameFirstRoll,nextFrameSecondtRoll)), 18);
+        assertEquals(frame.calculateFrameScoreForStrike(listOfRolls(nextFrameFirstRoll,nextFrameSecondRoll)), 18);
     }
 
     public List<Roll> listOfRolls(Roll firstRoll, Roll secondRoll) {
