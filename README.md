@@ -15,6 +15,7 @@ This is an Practice program to showcase Test Driven Development
 
 ````
 -Calculate score of one frame, when both rolls miss to knock down any pin
+-Calculate score of one frame, when few pins are knocked down in both rolls
 
 ````
 

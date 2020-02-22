@@ -24,12 +24,19 @@ public class BowlingTest
         frame = new Frame();
 
     }
-    
+
     @Test
     public void shouldReturnFrameScoreZeroWhenZeroPinsAreKnockedDown() {
         firstRoll.setPinsKnockedDown(0);
         secondRoll.setPinsKnockedDown(0);
         assertEquals(frame.calculateFrameScore(listOfRolls(firstRoll,secondRoll)), 0);
+    }
+
+    @Test
+    public void shouldReturnFrameScoreValueWhenFewPinsAreKnockedDown() {
+        firstRoll.setPinsKnockedDown(3);
+        secondRoll.setPinsKnockedDown(4);
+        assertEquals(frame.calculateFrameScore(listOfRolls(firstRoll,secondRoll)), 7);
     }
 
     public List<Roll> listOfRolls(Roll firstRoll, Roll secondRoll) {
