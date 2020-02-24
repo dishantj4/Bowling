@@ -103,6 +103,16 @@ public class BowlingTest
         assertEquals(game.calculateGameScore(2), 24);
     }
 
+    @Test
+    public void shouldReturnGameScoreForTenFramesWithoutAnyStrikeOrSpare() {
+
+        game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(3,3),
+                setNewFrameWithRolls(2,1),setNewFrameWithRolls(1,3),setNewFrameWithRolls(2,4),
+                setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
+                setNewFrameWithRolls(4,3),setNewFrameWithRolls(4,3)));
+        assertEquals(game.calculateGameScore(10), 57);
+    }
+
     public List<Roll> listOfRolls(Roll ... rolls) {
         List<Roll> rollList = new ArrayList<>();
         for (Roll roll : rolls) {
@@ -117,6 +127,16 @@ public class BowlingTest
             frameList.add(frame);
         }
         return frameList;
+    }
+
+    public Frame setNewFrameWithRolls(int firstRollInFrame, int secondRollInFrame){
+        Roll frame3FirstRoll = new Roll();
+        frame3FirstRoll.setPinsKnockedDown(firstRollInFrame);
+        Roll frame3SecondRoll = new Roll();
+        frame3SecondRoll.setPinsKnockedDown(secondRollInFrame);
+        Frame frame3 = new Frame();
+        frame3.setRolls(listOfRolls(frame3FirstRoll,frame3SecondRoll));
+        return frame3;
     }
 
 }
