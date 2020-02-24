@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Game {
 
+    private final static int firstRoll = 0;
+    private final static int  secondRoll = 1;
     private List<Frame> frames;
 
     public List<Frame> getFrames() {
@@ -18,20 +20,20 @@ public class Game {
 
         int gameScore = 0;
         int frameScore = 0;
-        int firstRoll = 0;
-        int secondRoll = 0;
+        int pinsKnockedInFirstRoll = 0;
+        int pinsKnockedInSecondRoll = 0;
         int nextFrame = 0;
         for (int frameCount = 0; frameCount < maxNumberOfFrame; frameCount++) {
             nextFrame = frameCount+1;
-            firstRoll = frames.get(frameCount).getRolls().get(0).getPinsKnockedDown();
-            if (isStrike(firstRoll)) {
-                frameScore = frames.get(nextFrame).calculateFrameScoreForStrike();
+            pinsKnockedInFirstRoll = frames.get(frameCount).getRolls().get(firstRoll).getPinsKnockedDown();
+            if (isStrike(pinsKnockedInFirstRoll)) {
+                frameScore = calculateScoreForStrike(nextFrame);
             }
             else {
-                secondRoll= frames.get(frameCount).getRolls().get(1).getPinsKnockedDown();
-                frameScore = firstRoll + secondRoll;
+                pinsKnockedInSecondRoll= frames.get(frameCount).getRolls().get(secondRoll).getPinsKnockedDown();
+                frameScore = pinsKnockedInFirstRoll + pinsKnockedInSecondRoll;
                 if (isSpare(frameScore)) {
-                    frameScore = frames.get(frameCount).calculateFrameScoreForSpare(frames.get(nextFrame).getRolls().get(0));
+                    frameScore = calculateScoreForSpare(frameCount,nextFrame);
                 } else {
                     frameScore = frames.get(frameCount).calculateFrameScore();
                 }
@@ -41,9 +43,18 @@ public class Game {
         return gameScore;
     }
 
-    public boolean isStrike(int firstRoll){
+    public int calculateScoreForStrike(int nextFrame){
+        return frames.get(nextFrame).calculateFrameScoreForStrike();
 
-        if(firstRoll == 10)
+    }
+
+    public int calculateScoreForSpare(int frameCount,int nextFrame){
+        return frames.get(frameCount).calculateFrameScoreForSpare(frames.get(nextFrame).getRolls().get(firstRoll));
+
+    }
+    public boolean isStrike(int pinsKnockedInFirstRoll){
+
+        if(pinsKnockedInFirstRoll == 10)
             return true;
         else
             return false;

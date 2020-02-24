@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Frame {
 
+    private final static int firstRoll = 0;
+    private final static int  secondRoll = 1;;
+
     private List<Roll> rolls;
 
     public List<Roll> getRolls() {
@@ -16,15 +19,17 @@ public class Frame {
 
     public int calculateFrameScore() {
 
-        int frameScore = rolls.get(0).getPinsKnockedDown() + rolls.get(1).getPinsKnockedDown();
+        int frameScore = rolls.get(firstRoll).getPinsKnockedDown() + rolls.get(secondRoll).getPinsKnockedDown();
         return frameScore;
     }
 
     public int calculateFrameScoreForSpare(Roll pinsKnockedInNextRoll) {
-        return pinsKnockedInNextRoll.getPinsKnockedDown()+10;
+        int bonus = 10;
+        return pinsKnockedInNextRoll.getPinsKnockedDown()+bonus;
     }
 
     public int calculateFrameScoreForStrike() {
-        return calculateFrameScore()+10;
+        int bonus = 10;
+        return calculateFrameScore()+ bonus;
     }
 }
