@@ -123,6 +123,16 @@ public class BowlingTest
         assertEquals(game.calculateGameScore(10), 100);
     }
 
+    @Test
+    public void shouldReturnGameScoreForTenFramesWithSpareOnTenthFrame() {
+
+        game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
+                setNewFrameWithRolls(10,0),setNewFrameWithRolls(10,0),setNewFrameWithRolls(2,4),
+                setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
+                setNewFrameWithRolls(4,3),setNewFrameWithRolls(5,5,4)));
+        assertEquals(game.calculateGameScore(10), 107);
+    }
+
     public List<Roll> listOfRolls(Roll ... rolls) {
         List<Roll> rollList = new ArrayList<>();
         for (Roll roll : rolls) {
@@ -139,14 +149,19 @@ public class BowlingTest
         return frameList;
     }
 
-    public Frame setNewFrameWithRolls(int firstRollInFrame, int secondRollInFrame){
-        Roll frame3FirstRoll = new Roll();
-        frame3FirstRoll.setPinsKnockedDown(firstRollInFrame);
-        Roll frame3SecondRoll = new Roll();
-        frame3SecondRoll.setPinsKnockedDown(secondRollInFrame);
-        Frame frame3 = new Frame();
-        frame3.setRolls(listOfRolls(frame3FirstRoll,frame3SecondRoll));
-        return frame3;
+    public Frame setNewFrameWithRolls(int ... rollsInFrame){
+        Roll frameFirstRoll = new Roll();
+        frameFirstRoll.setPinsKnockedDown(rollsInFrame[0]);
+        Roll frameSecondRoll = new Roll();
+        frameSecondRoll.setPinsKnockedDown(rollsInFrame[1]);
+        Roll frameThirdRoll = new Roll();
+        if (rollsInFrame.length > 2)
+        {
+            frameThirdRoll.setPinsKnockedDown(rollsInFrame[2]);
+        }
+        Frame frame = new Frame();
+        frame.setRolls(listOfRolls(frameFirstRoll,frameSecondRoll,frameThirdRoll));
+        return frame;
     }
 
 }

@@ -23,6 +23,7 @@ This is an Practice program to showcase Test Driven Development
 -Calculate game score having two frames where first frame is strike and in second frame few pins are knocked down
 -Calculate game score for ten frames which does not include any strike or spare
 -Calculate game score for ten frames which include  strike and spare as well
+-Calculate game score for ten frames which include spare on tenth frame
 
 ````
 
