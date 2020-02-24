@@ -47,7 +47,11 @@ public class Game {
     }
 
     public int calculateScoreForStrike(int nextFrame){
-        return frames.get(nextFrame).calculateFrameScoreForStrike();
+        if(nextFrame == LAST_FRAME + 1)
+        return frames.get(LAST_FRAME).calculateFrameScoreForStrikeOnTenthFrame();
+        else
+            return frames.get(nextFrame).calculateFrameScoreForStrike();
+
 
     }
 
