@@ -113,6 +113,16 @@ public class BowlingTest
         assertEquals(game.calculateGameScore(10), 57);
     }
 
+    @Test
+    public void shouldReturnGameScoreForTenFramesWithStrikeAndSpare() {
+
+        game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
+                setNewFrameWithRolls(10,0),setNewFrameWithRolls(10,0),setNewFrameWithRolls(2,4),
+                setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
+                setNewFrameWithRolls(4,3),setNewFrameWithRolls(4,3)));
+        assertEquals(game.calculateGameScore(10), 100);
+    }
+
     public List<Roll> listOfRolls(Roll ... rolls) {
         List<Roll> rollList = new ArrayList<>();
         for (Roll roll : rolls) {
