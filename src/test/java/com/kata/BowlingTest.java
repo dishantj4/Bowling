@@ -71,41 +71,24 @@ public class BowlingTest
 
     @Test
     public void shouldReturnGameScoreForFrameOneWhenZeroPinsKnockedDown() {
-        firstRoll.setPinsKnockedDown(0);
-        secondRoll.setPinsKnockedDown(0);
-        frame.setRolls(listOfRolls(firstRoll, secondRoll));
-        game.setFrames(listOfFrames(frame));
+        game.setFrames(listOfFrames(setNewFrameWithRolls(0,0)));
         assertEquals(game.calculateGameScore(1), 0);
     }
 
     @Test
     public void shouldReturnGameScoreForTwoFramesWithOneSpareAndOtherFewPinsKnockedDown() {
-        firstRoll.setPinsKnockedDown(5);
-        secondRoll.setPinsKnockedDown(5);
-        frame.setRolls(listOfRolls(firstRoll, secondRoll));
-        Frame nextFrame = new Frame();
-        nextFrameFirstRoll.setPinsKnockedDown(3);
-        nextFrameSecondRoll.setPinsKnockedDown(4);
-        nextFrame.setRolls(listOfRolls(nextFrameFirstRoll, nextFrameSecondRoll));
-        game.setFrames(listOfFrames(frame, nextFrame));
+        game.setFrames(listOfFrames(setNewFrameWithRolls(5,5), setNewFrameWithRolls(3,4)));
         assertEquals(game.calculateGameScore(2), 20);
     }
 
     @Test
     public void shouldReturnGameScoreForTwoFramesWithOneStrikeAndOtherFewPinsKnockedDown() {
-        firstRoll.setPinsKnockedDown(10);
-        frame.setRolls(listOfRolls(firstRoll));
-        Frame nextFrame = new Frame();
-        nextFrameFirstRoll.setPinsKnockedDown(3);
-        nextFrameSecondRoll.setPinsKnockedDown(4);
-        nextFrame.setRolls(listOfRolls(nextFrameFirstRoll, nextFrameSecondRoll));
-        game.setFrames(listOfFrames(frame, nextFrame));
+        game.setFrames(listOfFrames(setNewFrameWithRolls(10,0), setNewFrameWithRolls(3,4)));
         assertEquals(game.calculateGameScore(2), 24);
     }
 
     @Test
     public void shouldReturnGameScoreForTenFramesWithoutAnyStrikeOrSpare() {
-
         game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(3,3),
                 setNewFrameWithRolls(2,1),setNewFrameWithRolls(1,3),setNewFrameWithRolls(2,4),
                 setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
@@ -143,7 +126,7 @@ public class BowlingTest
         assertEquals(game.calculateGameScore(10), 112);
     }
 
-    public List<Roll> listOfRolls(Roll ... rolls) {
+    private List<Roll> listOfRolls(Roll ... rolls) {
         List<Roll> rollList = new ArrayList<>();
         for (Roll roll : rolls) {
             rollList.add(roll);
@@ -151,7 +134,7 @@ public class BowlingTest
         return rollList;
     }
 
-    public List<Frame> listOfFrames(Frame ... frames) {
+    private List<Frame> listOfFrames(Frame ... frames) {
         List<Frame> frameList = new ArrayList<>();
         for (Frame frame : frames) {
             frameList.add(frame);
@@ -159,7 +142,7 @@ public class BowlingTest
         return frameList;
     }
 
-    public Frame setNewFrameWithRolls(int ... rollsInFrame){
+    private Frame setNewFrameWithRolls(int ... rollsInFrame){
         Roll frameFirstRoll = new Roll();
         frameFirstRoll.setPinsKnockedDown(rollsInFrame[0]);
         Roll frameSecondRoll = new Roll();
