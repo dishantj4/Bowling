@@ -53,7 +53,7 @@ View Code Coverage Report at ‘target/site/jacoco/index.html’
 
 Below is the Mutation Test Report
 
-![](PitestReport/BowlingPitTestReport.PNG)
+![](PitTestReport/BowlingPitTestReport.PNG)
 
 
 
