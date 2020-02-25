@@ -11,9 +11,6 @@ public class Game {
     private final static int ALL_PINS_KNOCKED_DOWN = 10;
     private List<Frame> frames;
 
-    public List<Frame> getFrames() {
-        return frames;
-    }
 
     public void setFrames(List<Frame> frames) {
         this.frames = frames;
@@ -48,7 +45,7 @@ public class Game {
 
     public int calculateScoreForStrike(int nextFrame){
         if(nextFrame == LAST_FRAME + 1)
-        return frames.get(LAST_FRAME).calculateFrameScoreForStrikeOnTenthFrame();
+            return frames.get(LAST_FRAME).calculateFrameScoreForStrikeOnTenthFrame();
         else
             return frames.get(nextFrame).calculateFrameScoreForStrike();
 
@@ -58,8 +55,8 @@ public class Game {
     public int calculateScoreForSpare(int frameCount,int nextFrame){
         if(frameCount == LAST_FRAME)
             return frames.get(frameCount).calculateFrameScoreForSpare(frames.get(LAST_FRAME).getRolls().get(THIRD_ROLL));
-            else
-        return frames.get(frameCount).calculateFrameScoreForSpare(frames.get(nextFrame).getRolls().get(FIRST_ROLL));
+        else
+            return frames.get(frameCount).calculateFrameScoreForSpare(frames.get(nextFrame).getRolls().get(FIRST_ROLL));
 
     }
     public boolean isStrike(int pinsKnockedInFirstRoll){
