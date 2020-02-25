@@ -41,10 +41,19 @@ Maven 3.0
 Follow below instructions to run this app
 ````
 -git clone https://github.com/dishantj4/Bowling.git
+-Go to src/test/java/com/kata/BowlingTest.java and run the Junit Test case or run below maven command.
+
+$ mvn clean test
 
 ````
 
+# Code Coverage and Mutation Test
 
+View Code Coverage Report at ‘target/site/jacoco/index.html’
+
+Below is the Mutation Test Report
+
+![](PitestReport/BowlingPitTestReport.PNG)
 
 
 
