@@ -10,6 +10,10 @@ public class Game {
     private final static int LAST_FRAME = 9;
     private final static int ALL_PINS_KNOCKED_DOWN = 10;
     private List<Frame> frames;
+    private int pinsKnockedInFirstRoll = 0;
+    private int pinsKnockedInSecondRoll = 0;
+    private int frameScore = 0;
+    private int nextFrame = 0;
 
 
     public void setFrames(List<Frame> frames) {
@@ -19,28 +23,30 @@ public class Game {
     public int calculateGameScore(int maxNumberOfFrame) {
 
         int gameScore = 0;
-        int frameScore = 0;
-        int pinsKnockedInFirstRoll = 0;
-        int pinsKnockedInSecondRoll = 0;
-        int nextFrame = 0;
         for (int frameCount = 0; frameCount < maxNumberOfFrame; frameCount++) {
-            nextFrame = frameCount+1;
-            pinsKnockedInFirstRoll = frames.get(frameCount).getRolls().get(FIRST_ROLL).getPinsKnockedDown();
-            if (isStrike(pinsKnockedInFirstRoll)) {
-                frameScore = calculateScoreForStrike(nextFrame);
-            }
-            else {
-                pinsKnockedInSecondRoll= frames.get(frameCount).getRolls().get(SECOND_ROLL).getPinsKnockedDown();
-                frameScore = pinsKnockedInFirstRoll + pinsKnockedInSecondRoll;
-                if (isSpare(frameScore)) {
-                    frameScore = calculateScoreForSpare(frameCount,nextFrame);
-                } else {
-                    frameScore = frames.get(frameCount).calculateFrameScore();
-                }
-            }
+            frameScore = calculateFrameScoreForAllCase(frameCount);
             gameScore = gameScore + frameScore;
         }
         return gameScore;
+    }
+
+
+    public int calculateFrameScoreForAllCase(int frameCount){
+        nextFrame = frameCount+1;
+        pinsKnockedInFirstRoll = frames.get(frameCount).getRolls().get(FIRST_ROLL).getPinsKnockedDown();
+        if (isStrike(pinsKnockedInFirstRoll)) {
+            frameScore = calculateScoreForStrike(nextFrame);
+        }
+        else {
+            pinsKnockedInSecondRoll= frames.get(frameCount).getRolls().get(SECOND_ROLL).getPinsKnockedDown();
+            frameScore = pinsKnockedInFirstRoll + pinsKnockedInSecondRoll;
+            if (isSpare(frameScore)) {
+                frameScore = calculateScoreForSpare(frameCount,nextFrame);
+            } else {
+                frameScore = frames.get(frameCount).calculateFrameScore();
+            }
+        }
+        return frameScore;
     }
 
     public int calculateScoreForStrike(int nextFrame){
@@ -48,8 +54,6 @@ public class Game {
             return frames.get(LAST_FRAME).calculateFrameScoreForStrikeOnTenthFrame();
         else
             return frames.get(nextFrame).calculateFrameScoreForStrike();
-
-
     }
 
     public int calculateScoreForSpare(int frameCount,int nextFrame){
@@ -57,8 +61,8 @@ public class Game {
             return frames.get(frameCount).calculateFrameScoreForSpare(frames.get(LAST_FRAME).getRolls().get(THIRD_ROLL));
         else
             return frames.get(frameCount).calculateFrameScoreForSpare(frames.get(nextFrame).getRolls().get(FIRST_ROLL));
-
     }
+
     public boolean isStrike(int pinsKnockedInFirstRoll){
 
         if(pinsKnockedInFirstRoll == ALL_PINS_KNOCKED_DOWN)
@@ -73,4 +77,5 @@ public class Game {
         else
             return false;
     }
+
 }
