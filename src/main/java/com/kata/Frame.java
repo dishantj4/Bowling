@@ -2,11 +2,9 @@ package com.kata;
 
 import java.util.List;
 
-public class Frame {
+import static com.kata.Constants.*;
 
-    private final static int FIRST_ROLL = 0;
-    private final static int SECOND_ROLL = 1;
-    private final static int THIRD_ROLL = 2;
+public class Frame {
 
     private List<Roll> rolls;
 
@@ -19,9 +17,8 @@ public class Frame {
     }
 
     public int calculateFrameScore() {
-
-        int frameScore = rolls.get(FIRST_ROLL).getPinsKnockedDown() + rolls.get(SECOND_ROLL).getPinsKnockedDown();
-        return frameScore;
+        return getPinsKnockedDownInRoll(FIRST_ROLL)
+                       + getPinsKnockedDownInRoll(SECOND_ROLL);
     }
 
     public int calculateFrameScoreForSpare(Roll pinsKnockedInNextRoll) {
@@ -35,9 +32,11 @@ public class Frame {
     }
 
     public int calculateFrameScoreForStrikeOnTenthFrame() {
-        int frameScore = rolls.get(FIRST_ROLL).getPinsKnockedDown()
-                + rolls.get(SECOND_ROLL).getPinsKnockedDown() + rolls.get(THIRD_ROLL).getPinsKnockedDown();
-        return frameScore;
+        return getPinsKnockedDownInRoll(FIRST_ROLL)
+                       + getPinsKnockedDownInRoll(SECOND_ROLL)
+                       + getPinsKnockedDownInRoll(THIRD_ROLL);
     }
-
+    public int  getPinsKnockedDownInRoll(int rollIndex){
+        return  rolls.get( rollIndex ).getPinsKnockedDown();
+    }
 }
