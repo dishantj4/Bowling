@@ -4,7 +4,7 @@ import java.util.List;
 
 import static com.kata.Constants.*;
 
-public class Game {
+public class BowlingGame {
 
     private List<Frame> frames;
 

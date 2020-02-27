@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BowlingTest
+public class BowlingGameTest
 {
     private Roll firstRoll;
     private Roll secondRoll;
     private Roll nextFrameFirstRoll;
     private Roll nextFrameSecondRoll;
     private Frame frame;
-    private Game game;
+    private BowlingGame bowlingGame;
 
 
     @Before
@@ -26,7 +26,7 @@ public class BowlingTest
         nextFrameFirstRoll = new Roll();
         nextFrameSecondRoll = new Roll();
         frame = new Frame();
-        game = new Game();
+        bowlingGame = new BowlingGame();
     }
 
     @Test
@@ -50,19 +50,15 @@ public class BowlingTest
         firstRoll.setPinsKnockedDown(3);
         secondRoll.setPinsKnockedDown(7);
         frame.setRolls(listOfRolls(firstRoll,secondRoll));
-        if(frame.calculateFrameScore() ==10){
-            nextFrameFirstRoll.setPinsKnockedDown(4);
-        }
+        nextFrameFirstRoll.setPinsKnockedDown(4);
         assertEquals(frame.calculateFrameScoreForSpare(nextFrameFirstRoll), 14);
     }
 
     @Test
     public void shouldReturnFrameScoreValueWhenAllPinsAreKnockedDownInFirstRoll() {
         firstRoll.setPinsKnockedDown(10);
-        if(firstRoll.getPinsKnockedDown() ==10){
-            nextFrameFirstRoll.setPinsKnockedDown(4);
-            nextFrameSecondRoll.setPinsKnockedDown(4);
-        }
+        nextFrameFirstRoll.setPinsKnockedDown(4);
+        nextFrameSecondRoll.setPinsKnockedDown(4);
         frame.setRolls(listOfRolls(nextFrameFirstRoll, nextFrameSecondRoll));
         assertEquals(frame.calculateFrameScoreForStrike(), 18);
     }
@@ -70,59 +66,59 @@ public class BowlingTest
 
     @Test
     public void shouldReturnGameScoreForFrameOneWhenZeroPinsKnockedDown() {
-        game.setFrames(listOfFrames(setNewFrameWithRolls(0,0)));
-        assertEquals(game.calculateGameScore(1), 0);
+        bowlingGame.setFrames(listOfFrames(setNewFrameWithRolls(0,0)));
+        assertEquals( bowlingGame.calculateGameScore(1), 0);
     }
 
     @Test
     public void shouldReturnGameScoreForTwoFramesWithOneSpareAndOtherFewPinsKnockedDown() {
-        game.setFrames(listOfFrames(setNewFrameWithRolls(5,5), setNewFrameWithRolls(3,4)));
-        assertEquals(game.calculateGameScore(2), 20);
+        bowlingGame.setFrames(listOfFrames(setNewFrameWithRolls(5,5), setNewFrameWithRolls(3,4)));
+        assertEquals( bowlingGame.calculateGameScore(2), 20);
     }
 
     @Test
     public void shouldReturnGameScoreForTwoFramesWithOneStrikeAndOtherFewPinsKnockedDown() {
-        game.setFrames(listOfFrames(setNewFrameWithRolls(10,0), setNewFrameWithRolls(3,4)));
-        assertEquals(game.calculateGameScore(2), 24);
+        bowlingGame.setFrames(listOfFrames(setNewFrameWithRolls(10,0), setNewFrameWithRolls(3,4)));
+        assertEquals( bowlingGame.calculateGameScore(2), 24);
     }
 
     @Test
     public void shouldReturnGameScoreForTenFramesWithoutAnyStrikeOrSpare() {
-        game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(3,3),
+        bowlingGame.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(3,3),
                 setNewFrameWithRolls(2,1),setNewFrameWithRolls(1,3),setNewFrameWithRolls(2,4),
                 setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
                 setNewFrameWithRolls(4,3),setNewFrameWithRolls(4,3)));
-        assertEquals(game.calculateGameScore(10), 57);
+        assertEquals( bowlingGame.calculateGameScore(10), 57);
     }
 
     @Test
     public void shouldReturnGameScoreForTenFramesWithStrikeAndSpare() {
 
-        game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
+        bowlingGame.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
                 setNewFrameWithRolls(10,0),setNewFrameWithRolls(10,0),setNewFrameWithRolls(2,4),
                 setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
                 setNewFrameWithRolls(4,3),setNewFrameWithRolls(4,3)));
-        assertEquals(game.calculateGameScore(10), 100);
+        assertEquals( bowlingGame.calculateGameScore(10), 100);
     }
 
     @Test
     public void shouldReturnGameScoreForTenFramesWithSpareOnTenthFrame() {
 
-        game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
+        bowlingGame.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
                 setNewFrameWithRolls(10,0),setNewFrameWithRolls(10,0),setNewFrameWithRolls(2,4),
                 setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
                 setNewFrameWithRolls(4,3),setNewFrameWithRolls(5,5,4)));
-        assertEquals(game.calculateGameScore(10), 107);
+        assertEquals( bowlingGame.calculateGameScore(10), 107);
     }
 
     @Test
     public void shouldReturnGameScoreForTenFramesWithStrikeOnTenthFrame() {
 
-        game.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
+        bowlingGame.setFrames(listOfFrames(setNewFrameWithRolls(2,3),setNewFrameWithRolls(5,5),
                 setNewFrameWithRolls(10,0),setNewFrameWithRolls(10,0),setNewFrameWithRolls(2,4),
                 setNewFrameWithRolls(5,3),setNewFrameWithRolls(2,1),setNewFrameWithRolls(5,3),
                 setNewFrameWithRolls(4,3),setNewFrameWithRolls(10,5,4)));
-        assertEquals(game.calculateGameScore(10), 112);
+        assertEquals( bowlingGame.calculateGameScore(10), 112);
     }
 
     private List<Roll> listOfRolls(Roll ... rolls) {
