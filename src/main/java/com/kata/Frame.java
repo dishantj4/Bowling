@@ -18,23 +18,21 @@ public class Frame {
 
     public int calculateFrameScore() {
         return getPinsKnockedDownInRoll(FIRST_ROLL)
-                       + getPinsKnockedDownInRoll(SECOND_ROLL);
+                + getPinsKnockedDownInRoll(SECOND_ROLL);
     }
 
     public int calculateFrameScoreForSpare(Roll pinsKnockedInNextRoll) {
-        int bonus = 10;
-        return pinsKnockedInNextRoll.getPinsKnockedDown()+bonus;
+        return pinsKnockedInNextRoll.getPinsKnockedDown()+SPARE_BONUS;
     }
 
     public int calculateFrameScoreForStrike() {
-        int bonus = 10;
-        return calculateFrameScore()+ bonus;
+        return calculateFrameScore()+ STRIKE_BONUS;
     }
 
     public int calculateFrameScoreForStrikeOnTenthFrame() {
         return getPinsKnockedDownInRoll(FIRST_ROLL)
-                       + getPinsKnockedDownInRoll(SECOND_ROLL)
-                       + getPinsKnockedDownInRoll(THIRD_ROLL);
+                + getPinsKnockedDownInRoll(SECOND_ROLL)
+                + getPinsKnockedDownInRoll(THIRD_ROLL);
     }
     public int  getPinsKnockedDownInRoll(int rollIndex){
         return  rolls.get( rollIndex ).getPinsKnockedDown();

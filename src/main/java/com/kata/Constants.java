@@ -7,4 +7,7 @@ public interface Constants {
     int THIRD_ROLL = 2;
     int LAST_FRAME = 9;
     int ALL_PINS_KNOCKED_DOWN = 10;
+    int SPARE_BONUS = 10;
+    int STRIKE_BONUS = 10;
+
 }
