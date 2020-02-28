@@ -12,7 +12,8 @@ public class Frame {
         return rolls;
     }
 
-    public void setRolls(List<Roll> rolls) {
+
+    public Frame(List<Roll> rolls) {
         this.rolls = rolls;
     }
 

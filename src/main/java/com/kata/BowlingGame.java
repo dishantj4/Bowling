@@ -6,11 +6,12 @@ import static com.kata.Constants.*;
 
 public class BowlingGame {
 
-    private List<Frame> frames;
-
-    public void setFrames(List<Frame> frames) {
+    public BowlingGame(List<Frame> frames) {
         this.frames = frames;
     }
+
+    private List<Frame> frames;
+
 
     public int calculateGameScore(int maxNumberOfFrame) {
 
