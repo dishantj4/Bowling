@@ -1,8 +1,6 @@
 package com.kata;
 
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,13 +10,9 @@ import java.util.List;
 
 public class BowlingGameTest
 {
-    private Roll firstRoll;
-    private Roll secondRoll;
-    private Roll nextFrameFirstRoll;
-    private Roll nextFrameSecondRoll;
+
     private Frame frame;
     private BowlingGame bowlingGame;
-
 
 
     @Test
